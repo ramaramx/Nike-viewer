@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike Alphafly 3</title>
+    <!-- Import the component -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+      <style>
+        #error {
+          background-color: #ffffffdd;
+          border-radius: 16px;
+          padding: 16px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate3d(-50%, -50%, 0);
+          transition: opacity 0.3s;
+        }
+        #error.hide {
+          opacity: 0;
+          visibility: hidden;
+          transition: visibility 2s, opacity 1s 1s;
+        }
+        #model-viewer{
+            height: 100vh;
+            width: auto;
+            overflow: hidden;
+        }
+        #container-bottom{
+          position: absolute;
+          z-index: 99;
+          top: 80%;
+          right: 50%;
+          transform: translate(50%, 50%);
+        }
+        .button{
+          width: 175px;
+          height: 50px;
+          background-color: white;
+          color: black;
+          border-radius: 32px;
+          font-size: 18px;
+          font-weight: 600;
+          font-family: "Poppins", sans-serif;
+        }
+        .button:hover{
+          background-color: black;
+          color: white;
+          transition: .4s linear;
+        }
+
+        #left-top{
+          position: absolute;
+          z-index: 99;
+          top: 65%;
+          right: 30%;
+          transform: translate(50%, 50%);
+        }
+
+        #right-top{
+          position: absolute;
+          z-index: 99;
+          top: 30%;
+          right: 70%;
+          transform: translate(50%, 50%);
+        }
+
+        .logo{
+          height: 50px;
+          width: 100px;
+
+        }
+      </style>
+</head>
+<body>
+  <div id="left-top">
+    <img src="./assets/logo.png" class="logo"/>
+  </div>
+
+  <div id="right-top">
+    <img src="./assets/logo.png" class="logo" />
+  </div>
+  <!-- Use it like any other HTML element -->
+  <model-viewer id="model-viewer" src="./assets/nike_air_max_90.glb" ar ar-modes="scene-viewer" 
+  camera-controls touch-action="pan-y" alt="A 3D model of an astronaut" shadow-intensity="2"  max-camera-orbit="auto 90deg auto">
+    <div id="error" class="hide">AR is not supported on this device</div>
+  </model-viewer>
+  <div id="container-bottom">
+    <button class="button">
+      Virtual Try ON
+    </button>
+  </div>
+  <script>
+    document.querySelector("#model-viewer").addEventListener('ar-status', (event) => {
+      if(event.detail.status === 'failed'){
+        const error = document.querySelector("#error");
+        error.classList.remove('hide');
+        error.addEventListener('transitionend',(event) => {
+          error.classList.add('hide');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
