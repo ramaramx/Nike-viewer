@@ -75,16 +75,17 @@
       </style>
 </head>
 <body>
+
   <div id="left-top">
     <img src="./assets/logo.png" class="logo"/>
   </div>
-
+  <!-- content image -->
   <div id="right-top">
     <img src="./assets/logo.png" class="logo" />
   </div>
   <!-- Use it like any other HTML element -->
   <model-viewer id="model-viewer" src="./assets/nike_air_max_90.glb" ar ar-modes="scene-viewer" 
-  camera-controls touch-action="pan-y" alt="A 3D model of an astronaut" shadow-intensity="2"  max-camera-orbit="auto 90deg auto">
+  camera-controls touch-action="pan-y" alt="A 3D model of an astronaut" shadow-intensity="2">
     <div id="error" class="hide">AR is not supported on this device</div>
   </model-viewer>
   <div id="container-bottom">
@@ -102,6 +103,9 @@
         });
       }
     });
+  </script>
+  <script>
+
   </script>
 </body>
 </html>
